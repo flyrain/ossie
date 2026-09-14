@@ -159,9 +159,6 @@ standalone document metadata. In particular, an ontology map continues to embed
 those contents under its `semantic_model` property. This standalone document
 change does not rename or flatten that ontology property.
 
-Converter and Python SDK adoption is tracked as follow-up work; existing
-implementations may still require the earlier wrapped-array shape.
-
 ---
 
 ## Datasets
