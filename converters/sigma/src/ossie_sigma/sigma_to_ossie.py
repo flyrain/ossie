@@ -15,7 +15,6 @@ from ossie import (
     OssieField,
     OssieMetric,
     OssieRelationship,
-    OssieSemanticModel,
     OssieVendor,
 )
 
@@ -449,7 +448,9 @@ class SigmaToOssieConverter:
                     )
                 )
 
-        semantic_model = OssieSemanticModel(
+        document = OssieDocument(
+            dialects=[OssieDialect.ANSI_SQL, OssieDialect.SIGMA],
+            vendors=[OssieVendor.SIGMA],
             name=spec.get("name", "sigma_data_model"),
             description=spec.get("description"),
             datasets=datasets,
@@ -458,9 +459,4 @@ class SigmaToOssieConverter:
             custom_extensions=[_vendor_ext(model_ext)] if model_ext else None,
         )
 
-        document = OssieDocument(
-            dialects=[OssieDialect.ANSI_SQL, OssieDialect.SIGMA],
-            vendors=[OssieVendor.SIGMA],
-            semantic_model=[semantic_model],
-        )
         return ConverterResult(output=document, issues=issues)
